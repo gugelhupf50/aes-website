@@ -2,20 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
-  --costco-red: #E31837;
-  --costco-blue: #005DAA;
+@layer base {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 255, 255, 255;
+    --background-end-rgb: 255, 255, 255;
+    
+    /* Costco Brand Colors */
+    --costco-red: #E31837;
+    --costco-blue: #005DAA;
+    --costco-light-gray: #F5F5F5;
+    --costco-dark-gray: #333333;
+    
+    /* Semantic Colors */
+    --primary: var(--costco-blue);
+    --secondary: var(--costco-red);
+    --accent: var(--costco-red);
+    --background: #FFFFFF;
+    --text-primary: var(--costco-dark-gray);
+    --text-secondary: #666666;
+    
+    /* Spacing */
+    --container-padding: 1rem;
+    --section-spacing: 4rem;
+  }
+  
+  @media (min-width: 768px) {
+    :root {
+      --container-padding: 2rem;
+      --section-spacing: 6rem;
+    }
+  }
+  
+  * {
+    @apply border-gray-200;
+  }
+  
+  body {
+    @apply bg-white text-gray-900;
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))
+      )
+      rgb(var(--background-start-rgb));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+  /* Button Components */
+  .btn-primary {
+    @apply bg-costco-blue text-white font-semibold py-3 px-6 rounded-md hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-costco-blue focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply bg-costco-red text-white font-semibold py-3 px-6 rounded-md hover:bg-red-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-costco-red focus:ring-offset-2;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-costco-blue text-costco-blue font-semibold py-3 px-6 rounded-md hover:bg-costco-blue hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-costco-blue focus:ring-offset-2;
+  }
+  
+  /* Container Component */
+  .container-costco {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Card Component */
+  .card-costco {
+    @apply bg-white rounded-lg shadow-costco p-6 hover:shadow-costco-lg transition-shadow duration-300;
+  }
+  
+  /* Text Components */
+  .text-hero {
+    @apply text-5xl md:text-6xl font-bold text-costco-blue;
+  }
+  
+  .text-section {
+    @apply text-3xl md:text-4xl font-semibold text-costco-dark-gray;
+  }
+}
+
+@layer utilities {
+  /* Text Gradient Utility */
+  .text-gradient-costco {
+    @apply bg-costco-gradient bg-clip-text text-transparent;
+  }
+  
+  /* Hover Animations */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+  
+  /* Focus Styles */
+  .focus-costco {
+    @apply focus:outline-none focus:ring-2 focus:ring-costco-blue focus:ring-offset-2;
+  }
+  
+  /* Responsive Utilities */
+  .section-spacing {
+    @apply py-12 md:py-20;
+  }
 }
